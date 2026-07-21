@@ -4,17 +4,14 @@
 
   image: "assets/img/projects/automation.png"
 
-
   description: >
     An AI automation system that converts podcast videos and WordPress blogs
     into transcripts, marketing content, and social media assets using n8n,
     Whisper AI, and OpenAI GPT.
 
-
   results: >
     Reduced manual content repurposing effort by automating transcription,
     content generation, and review workflows.
-
 
   tech:
     - Python
@@ -25,6 +22,64 @@
     - Docker
     - WordPress API
 
+  github: "https://github.com/moonirul/AI-Powered-Podcast-WordPress-Content-Automation"
+
+  demo: ""
+
+  paper: ""
+
+  video_embed: "https://drive.google.com/file/d/1rcxScZFhjQnIp2_pqit0zFnLobDS3Kqe/preview"
+
+  featured: true
+
+  details:
+    overview: >
+      An end-to-end automation pipeline that takes raw podcast recordings and
+      WordPress blog posts and turns them into ready-to-publish content —
+      transcripts, marketing copy, and social media assets — with minimal
+      manual intervention.
+    problem: >
+      Repurposing long-form podcast and blog content into social media posts,
+      show notes, and marketing copy was a slow, repetitive manual process
+      that ate up significant editorial time every week.
+    solution: >
+      Built an n8n-orchestrated workflow that transcribes podcast audio using
+      Whisper AI, pulls WordPress posts via the WordPress REST API, and
+      generates marketing and social content using OpenAI GPT — with a
+      FastAPI backend handling processing logic and Docker for consistent
+      deployment.
+    features:
+      - "Automated podcast-to-transcript conversion using Whisper AI"
+      - "WordPress blog content ingestion via REST API"
+      - "AI-generated marketing copy and social media assets with GPT"
+      - "n8n workflow orchestration end-to-end"
+      - "Dockerized for consistent, portable deployment"
+    results: >
+      Cut manual content repurposing time significantly by automating
+      transcription, content generation, and the review workflow.
+- title: "AI-Powered Podcast & WordPress Content Automation"
+
+  type: "AI Automation"
+
+  image: "assets/img/projects/automation.png"
+
+  description: >
+    An AI automation system that converts podcast videos and WordPress blogs
+    into transcripts, marketing content, and social media assets using n8n,
+    Whisper AI, and OpenAI GPT.
+
+  results: >
+    Reduced manual content repurposing effort by automating transcription,
+    content generation, and review workflows.
+
+  tech:
+    - Python
+    - FastAPI
+    - OpenAI GPT
+    - Whisper AI
+    - n8n
+    - Docker
+    - WordPress API
 
   github: "https://github.com/moonirul/AI-Powered-Podcast-WordPress-Content-Automation"
 
@@ -32,9 +87,36 @@
 
   paper: ""
 
-  video: "assets/Videos/Workflow-Video.mp4"
+  video_embed: "https://drive.google.com/file/d/1rcxScZFhjQnIp2_pqit0zFnLobDS3Kqe/preview"
 
   featured: true
+
+  details:
+    overview: >
+      An end-to-end automation pipeline that takes raw podcast recordings and
+      WordPress blog posts and turns them into ready-to-publish content —
+      transcripts, marketing copy, and social media assets — with minimal
+      manual intervention.
+    problem: >
+      Repurposing long-form podcast and blog content into social media posts,
+      show notes, and marketing copy was a slow, repetitive manual process
+      that ate up significant editorial time every week.
+    solution: >
+      Built an n8n-orchestrated workflow that transcribes podcast audio using
+      Whisper AI, pulls WordPress posts via the WordPress REST API, and
+      generates marketing and social content using OpenAI GPT — with a
+      FastAPI backend handling processing logic and Docker for consistent
+      deployment.
+    features:
+      - "Automated podcast-to-transcript conversion using Whisper AI"
+      - "WordPress blog content ingestion via REST API"
+      - "AI-generated marketing copy and social media assets with GPT"
+      - "n8n workflow orchestration end-to-end"
+      - "Dockerized for consistent, portable deployment"
+    results: >
+      Cut manual content repurposing time significantly by automating
+      transcription, content generation, and the review workflow.
+
 
 - title: "AI-Powered Podcast & WordPress Content Automation"
 
@@ -42,17 +124,14 @@
 
   image: "assets/img/projects/automation.png"
 
-
   description: >
     An AI automation system that converts podcast videos and WordPress blogs
     into transcripts, marketing content, and social media assets using n8n,
     Whisper AI, and OpenAI GPT.
 
-
   results: >
     Reduced manual content repurposing effort by automating transcription,
     content generation, and review workflows.
-
 
   tech:
     - Python
@@ -63,6 +142,65 @@
     - Docker
     - WordPress API
 
+  github: "https://github.com/moonirul/AI-Powered-Podcast-WordPress-Content-Automation"
+
+  demo: ""
+
+  paper: ""
+
+  video_embed: "https://drive.google.com/file/d/1rcxScZFhjQnIp2_pqit0zFnLobDS3Kqe/preview"
+
+  featured: true
+
+  details:
+    overview: >
+      An end-to-end automation pipeline that takes raw podcast recordings and
+      WordPress blog posts and turns them into ready-to-publish content —
+      transcripts, marketing copy, and social media assets — with minimal
+      manual intervention.
+    problem: >
+      Repurposing long-form podcast and blog content into social media posts,
+      show notes, and marketing copy was a slow, repetitive manual process
+      that ate up significant editorial time every week.
+    solution: >
+      Built an n8n-orchestrated workflow that transcribes podcast audio using
+      Whisper AI, pulls WordPress posts via the WordPress REST API, and
+      generates marketing and social content using OpenAI GPT — with a
+      FastAPI backend handling processing logic and Docker for consistent
+      deployment.
+    features:
+      - "Automated podcast-to-transcript conversion using Whisper AI"
+      - "WordPress blog content ingestion via REST API"
+      - "AI-generated marketing copy and social media assets with GPT"
+      - "n8n workflow orchestration end-to-end"
+      - "Dockerized for consistent, portable deployment"
+    results: >
+      Cut manual content repurposing time significantly by automating
+      transcription, content generation, and the review workflow.
+
+- title: "AI-Powered Podcast & WordPress Content Automation"
+
+  type: "AI Automation"
+
+  image: "assets/img/projects/automation.png"
+
+  description: >
+    An AI automation system that converts podcast videos and WordPress blogs
+    into transcripts, marketing content, and social media assets using n8n,
+    Whisper AI, and OpenAI GPT.
+
+  results: >
+    Reduced manual content repurposing effort by automating transcription,
+    content generation, and review workflows.
+
+  tech:
+    - Python
+    - FastAPI
+    - OpenAI GPT
+    - Whisper AI
+    - n8n
+    - Docker
+    - WordPress API
 
   github: "https://github.com/moonirul/AI-Powered-Podcast-WordPress-Content-Automation"
 
@@ -70,7 +208,32 @@
 
   paper: ""
 
-  video: "assets/Videos/Workflow-Video.mp4"
+  video_embed: "https://drive.google.com/file/d/1rcxScZFhjQnIp2_pqit0zFnLobDS3Kqe/preview"
 
   featured: true
 
+  details:
+    overview: >
+      An end-to-end automation pipeline that takes raw podcast recordings and
+      WordPress blog posts and turns them into ready-to-publish content —
+      transcripts, marketing copy, and social media assets — with minimal
+      manual intervention.
+    problem: >
+      Repurposing long-form podcast and blog content into social media posts,
+      show notes, and marketing copy was a slow, repetitive manual process
+      that ate up significant editorial time every week.
+    solution: >
+      Built an n8n-orchestrated workflow that transcribes podcast audio using
+      Whisper AI, pulls WordPress posts via the WordPress REST API, and
+      generates marketing and social content using OpenAI GPT — with a
+      FastAPI backend handling processing logic and Docker for consistent
+      deployment.
+    features:
+      - "Automated podcast-to-transcript conversion using Whisper AI"
+      - "WordPress blog content ingestion via REST API"
+      - "AI-generated marketing copy and social media assets with GPT"
+      - "n8n workflow orchestration end-to-end"
+      - "Dockerized for consistent, portable deployment"
+    results: >
+      Cut manual content repurposing time significantly by automating
+      transcription, content generation, and the review workflow.

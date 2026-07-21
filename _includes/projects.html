@@ -1,3 +1,14 @@
+<style>
+    .project-card.expanded {
+  grid-column: 1 / -1;
+}
+</style>
+
+
+
+
+
+
 {% assign items = site.data.projects | default: [] %}
 
 {% if site.projects.show_featured_only %}
@@ -9,129 +20,197 @@
 
 <section id="projects" class="py-12 border-b border-slate-100">
 
-<h2 class="text-3xl font-bold text-slate-900 mb-10">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">
     Selected Projects
 </h2>
 
+<p class="text-slate-500 mb-10">
+    A collection of things I've built and shipped.
+</p>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+<div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
 
 {% for p in items %}
 
-<article class="group rounded-3xl overflow-hidden bg-white border border-slate-200 hover:shadow-xl transition duration-300">
+<article class="project-card group rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 ease-out overflow-hidden">
 
+<!-- MEDIA BOX: thumbnail image <-> video, same spot -->
+<div class="media-box relative overflow-hidden bg-slate-100 aspect-video cursor-pointer" onclick="openProject(this)">
 
 {% if p.image %}
-
-<div class="relative h-60 overflow-hidden bg-slate-100">
-
 <img
-src="{{p.image}}"
+src="{{ p.image | relative_url }}"
 alt="{{p.title}}"
-class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+class="thumb-img w-full h-full object-cover group-hover:scale-[1.04] transition duration-500 ease-out">
+{% endif %}
 
+{% if p.video_embed %}
+<iframe
+class="video-embed-frame hidden w-full h-full absolute inset-0"
+data-src="{{p.video_embed}}"
+allow="autoplay"
+allowfullscreen
+frameborder="0">
+</iframe>
+{% endif %}
+
+<div class="thumb-overlay absolute inset-0 bg-black/0 group-hover:bg-black/30 transition duration-300 flex items-center justify-center pointer-events-none">
+<div class="w-14 h-14 rounded-full bg-white/95 shadow-lg flex items-center justify-center scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out">
+<i class="bi bi-play-fill text-indigo-600 text-2xl ml-0.5"></i>
+</div>
+</div>
+
+{% if p.duration %}
+<span class="thumb-badge absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-sm text-white text-xs font-semibold tracking-wide">
+{{p.duration}}
+</span>
+{% endif %}
 
 {% if p.type %}
-<span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-xs font-semibold text-indigo-700">
+<span class="thumb-badge absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm text-indigo-700 text-xs font-semibold uppercase tracking-wide shadow-sm">
 {{p.type}}
 </span>
 {% endif %}
 
-
 </div>
 
-{% endif %}
 
+<!-- CARD BODY: always visible, never duplicated -->
+<div class="p-5">
 
+<div class="flex gap-3">
 
-<div class="p-6">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+{{p.title | slice: 0, 1}}
+</div>
 
+<div class="min-w-0 flex-1">
 
-<h3 class="text-xl font-bold text-slate-900">
+<h3 class="text-base font-bold text-slate-900 leading-snug">
 {{p.title}}
 </h3>
 
+{% if p.tech %}
+<p class="mt-1 text-xs font-medium text-slate-400 tracking-wide">
+{{p.tech | join: " · "}}
+</p>
+{% endif %}
 
+</div>
 
-<p class="mt-3 text-sm leading-6 text-slate-600">
+</div>
+
+<p class="mt-3 text-sm text-slate-600 leading-relaxed">
 {{p.description}}
 </p>
 
-
-
-
 {% if p.results %}
+<p class="mt-2.5 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full px-3 py-1">
+<i class="bi bi-graph-up-arrow"></i> {{p.results}}
+</p>
+{% endif %}
 
-<div class="mt-4 px-4 py-3 rounded-xl bg-emerald-50 text-emerald-700 text-sm">
-
-<i class="bi bi-graph-up-arrow"></i>
-
-{{p.results}}
+{% if p.details %}
+<button
+type="button"
+onclick="openProject(this)"
+class="details-toggle mt-4 inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors duration-200">
+<i class="bi bi-arrows-angle-expand"></i> View Details
+</button>
+{% endif %}
 
 </div>
 
+
+{% if p.details %}
+<!-- DETAILS: expands within the SAME card, below the body -->
+<div class="details hidden relative border-t border-slate-100 p-6 sm:p-8">
+
+<button
+type="button"
+onclick="closeProject(this)"
+aria-label="Close details"
+class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-colors duration-200 z-10">
+<i class="bi bi-x-lg text-lg"></i>
+</button>
+
+{% if p.details.overview %}
+<div class="pr-12">
+<h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide text-slate-500">Overview</h4>
+<p class="mt-2 text-slate-600 text-sm leading-relaxed">{{p.details.overview}}</p>
+</div>
 {% endif %}
 
+{% if p.details.problem %}
+<div class="mt-6">
+<h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide text-slate-500">Problem</h4>
+<p class="mt-2 text-slate-600 text-sm leading-relaxed">{{p.details.problem}}</p>
+</div>
+{% endif %}
 
+{% if p.details.solution %}
+<div class="mt-6">
+<h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide text-slate-500">Solution</h4>
+<p class="mt-2 text-slate-600 text-sm leading-relaxed">{{p.details.solution}}</p>
+</div>
+{% endif %}
 
-
-{% if p.tech %}
-
-<div class="flex flex-wrap gap-2 mt-5">
-
-{% for tech in p.tech %}
-
-<span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
-
-{{tech}}
-
-</span>
-
+{% if p.details.features %}
+<div class="mt-6">
+<h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide text-slate-500">Features</h4>
+<ul class="mt-3 space-y-2 text-sm text-slate-600">
+{% for feature in p.details.features %}
+<li class="flex items-start gap-2">
+<i class="bi bi-check-circle-fill text-emerald-500 mt-0.5"></i>
+<span>{{feature}}</span>
+</li>
 {% endfor %}
-
+</ul>
 </div>
-
 {% endif %}
 
-
-
+{% if p.details.results %}
+<div class="mt-6 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-2xl p-5 text-sm flex items-start gap-3">
+<i class="bi bi-graph-up-arrow text-lg mt-0.5"></i>
+<div>
+<strong class="block text-emerald-800 mb-1">Impact</strong>
+{{p.details.results}}
+</div>
+</div>
+{% endif %}
 
 <div class="flex gap-3 mt-6">
-
-
 {% if p.github %}
-
 <a href="{{p.github}}" target="_blank"
-class="px-4 py-2 rounded-full bg-slate-900 text-white text-sm">
-
-<i class="bi bi-github"></i>
-Code
-
+class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-full transition-colors duration-200">
+<i class="bi bi-github"></i> GitHub
 </a>
-
+{% endif %}
+{% if p.demo and p.demo != "" %}
+<a href="{{p.demo}}" target="_blank"
+class="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-full transition-colors duration-200">
+<i class="bi bi-box-arrow-up-right"></i> Live Demo
+</a>
+{% endif %}
+{% if p.paper and p.paper != "" %}
+<a href="{{p.paper}}" target="_blank"
+class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-700 hover:bg-slate-800 text-white text-sm font-medium rounded-full transition-colors duration-200">
+<i class="bi bi-file-earmark-text"></i> Paper
+</a>
 {% endif %}
 
+<button
+type="button"
+onclick="closeProject(this)"
+class="ml-auto inline-flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-full transition-colors duration-200">
+<i class="bi bi-x-lg"></i> Close
+</button>
+</div>
 
-
-{% if p.video %}
-
-<a href="{{p.video}}" target="_blank"
-class="px-4 py-2 rounded-full bg-red-600 text-white text-sm">
-
-<i class="bi bi-play-circle"></i>
-Video
-
-</a>
-
+</div>
 {% endif %}
-
-
-
-</div>
-
-
-</div>
 
 
 </article>
@@ -145,3 +224,80 @@ Video
 </section>
 
 {% endif %}
+
+
+<!-- Project card: full-row expand + thumbnail <-> video swap in-place -->
+<script>
+  let currentExpandedCard = null;
+
+  function showVideo(card) {
+    const img = card.querySelector(".thumb-img");
+    const frame = card.querySelector(".video-embed-frame");
+    const overlay = card.querySelector(".thumb-overlay");
+    const badges = card.querySelectorAll(".thumb-badge");
+
+    if (!frame) return;
+
+    const src = frame.getAttribute("data-src");
+    if (src) frame.src = src;
+
+    if (img) img.classList.add("hidden");
+    frame.classList.remove("hidden");
+    if (overlay) overlay.classList.add("hidden");
+    badges.forEach((b) => b.classList.add("hidden"));
+  }
+
+  function hideVideo(card) {
+    const img = card.querySelector(".thumb-img");
+    const frame = card.querySelector(".video-embed-frame");
+    const overlay = card.querySelector(".thumb-overlay");
+    const badges = card.querySelectorAll(".thumb-badge");
+
+    if (!frame) return;
+
+    frame.src = "";
+    frame.classList.add("hidden");
+    if (img) img.classList.remove("hidden");
+    if (overlay) overlay.classList.remove("hidden");
+    badges.forEach((b) => b.classList.remove("hidden"));
+  }
+
+  function collapseCurrent() {
+    if (!currentExpandedCard) return;
+
+    const card = currentExpandedCard;
+    const details = card.querySelector(".details");
+    if (details) details.classList.add("hidden");
+
+    card.classList.remove("expanded", "md:col-span-2");
+
+    hideVideo(card);
+
+    currentExpandedCard = null;
+  }
+
+  function openProject(el) {
+    const card = el.closest(".project-card");
+    if (!card) return;
+
+    if (currentExpandedCard === card) return;
+
+    // Collapse whichever card was previously open (stops its video too)
+    collapseCurrent();
+
+    const details = card.querySelector(".details");
+    if (details) details.classList.remove("hidden");
+
+    card.classList.add("expanded", "md:col-span-2");
+
+    showVideo(card);
+
+    currentExpandedCard = card;
+
+    card.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function closeProject(btn) {
+    collapseCurrent();
+  }
+</script>
