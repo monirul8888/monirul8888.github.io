@@ -338,9 +338,20 @@
           <a href="#about" class="nav-link"
             ><i class="bi bi-person"></i> About Me</a
           >
-          <a href="#experience" class="nav-link"
+          <!-- <a href="#experience" class="nav-link"
             ><i class="bi bi-briefcase"></i> Experience</a
-          >
+          > -->
+
+          <a href="#education" class="nav-link">
+            <i class="bi bi-mortarboard-fill"></i>
+            Education
+          </a>
+
+          <a href="#employment" class="nav-link">
+            <i class="bi bi-briefcase-fill"></i>
+            Employment History
+          </a>
+
           <a href="#skills" class="nav-link"
             ><i class="bi bi-code-slash"></i> Technical Skills</a
           >
@@ -350,6 +361,11 @@
           <a href="#publications" class="nav-link"
             ><i class="bi bi-journal-text"></i> Publications</a
           >
+
+          <a href="#teaching" class="nav-link">
+            <i class="bi bi-person-video3"></i>
+            Teaching & Activities
+          </a>
 
           <a href="#resume" class="nav-link"
             ><i class="bi bi-file-earmark-person"></i> Resume</a
@@ -468,6 +484,18 @@
             },
           );
         });
+
+        function resetLayout() {
+          if (!isDesktop()) {
+            sections.forEach((section) => {
+              section.style.display = "";
+            });
+
+            allLinks.forEach((link) => {
+              link.classList.remove("active");
+            });
+          }
+        }
 
         resetLayout();
 

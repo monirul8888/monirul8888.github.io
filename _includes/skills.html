@@ -2,144 +2,67 @@
 
 {% if skills.size > 0 %}
 
-<section id="skills" class="py-8 border-b border-slate-100">
+<section id="skills" class="py-4 border-b border-slate-100">
 
+  <h2 class="text-xl font-bold text-slate-900 mb-3">
+    Technical Skills
+  </h2>
 
-    <h2 class="text-2xl font-bold text-slate-900 mb-6">
-        Technical Skills
-    </h2>
+  <div class="grid md:grid-cols-2 gap-3">
 
+    {% for skill in skills %}
 
+    <div
+      class="group rounded-lg border border-slate-200 p-3 transition-all duration-300 hover:bg-white hover:border-indigo-300 hover:shadow-md hover:-translate-y-1"
+    >
 
-    <div class="grid md:grid-cols-2 gap-4">
-
-
-        {% for skill in skills %}
-
+      <div class="flex items-center gap-2 mb-2">
 
         <div
-        class="
-        group
-        rounded-xl
-        border
-        border-slate-200
-        p-4
-        transition-all
-        duration-300
-        hover:bg-white
-        hover:border-indigo-300
-        hover:shadow-lg
-        hover:-translate-y-1
-        ">
-
-
-            <!-- Category -->
-
-            <div class="flex items-center gap-3 mb-4">
-
-
-                <div
-                class="
-                w-9
-                h-9
-                flex
-                items-center
-                justify-center
-                rounded-lg
-                bg-indigo-100
-                text-indigo-600
-                transition
-                duration-300
-                group-hover:bg-indigo-600
-                group-hover:text-white
-                ">
-
-                    <i class="{{ skill.icon }}"></i>
-
-                </div>
-
-
-
-                <h3
-                class="
-                font-semibold
-                text-slate-800
-                text-sm
-                ">
-
-                    {{ skill.category }}
-
-                </h3>
-
-
-            </div>
-
-
-
-
-            <!-- Skill Items -->
-
-            <div class="flex flex-wrap gap-2">
-
-
-                {% for item in skill.items %}
-
-
-                <span
-                class="
-                inline-flex
-                items-center
-                gap-2
-                px-2.5
-                py-1.5
-                rounded-md
-                bg-white/60
-                border
-                border-slate-200
-                text-xs
-                text-slate-700
-                transition-all
-                duration-200
-                hover:bg-white
-                hover:border-indigo-300
-                hover:text-indigo-700
-                hover:shadow-sm
-                ">
-
-
-                    {% if item.logo != "" %}
-
-                    <img
-                    src="https://cdn.simpleicons.org/{{ item.logo }}"
-                    alt="{{ item.name }}"
-                    class="w-4 h-4"
-                    />
-
-                    {% endif %}
-
-
-                    {{ item.name }}
-
-
-                </span>
-
-
-                {% endfor %}
-
-
-            </div>
-
-
+          class="w-8 h-8 flex items-center justify-center rounded-md bg-indigo-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition"
+        >
+          <i class="{{ skill.icon }}"></i>
         </div>
 
+        <h3 class="font-semibold text-slate-800 text-sm">
+          {{ skill.category }}
+        </h3>
+
+      </div>
+
+
+      <div class="flex flex-wrap gap-1.5">
+
+        {% for item in skill.items %}
+
+        <span
+          class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white/60 border border-slate-200 text-[11px] text-slate-700 hover:bg-white hover:border-indigo-300 hover:text-indigo-700 transition"
+        >
+
+          {% if item.logo != "" %}
+
+          <img
+            src="https://cdn.simpleicons.org/{{ item.logo }}"
+            alt="{{ item.name }}"
+            class="w-3.5 h-3.5"
+          />
+
+          {% endif %}
+
+          {{ item.name }}
+
+        </span>
 
         {% endfor %}
 
+      </div>
 
     </div>
 
+    {% endfor %}
+
+  </div>
 
 </section>
-
 
 {% endif %}

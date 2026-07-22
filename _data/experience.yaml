@@ -1,33 +1,39 @@
 education:
+
   - title: "B.Sc. in Computer Science & Engineering"
     institution: "Green University of Bangladesh"
     institution_url: "https://green.edu.bd/"
     location: "Purbachal, Narayanganj, Bangladesh"
     period: "Feb 2022 – Feb 2026"
     description: >
-      Undergraduate studies in Computer Science and Engineering, with research
-      interests in Artificial Intelligence, Machine Learning, and Computer Vision.
-      Completed an undergraduate thesis on computer vision-based real-time air
-      quality index estimation from ground-level images.
+      CGPA: 3.72/4.00.
+      Undergraduate studies focused on Computer Science, Artificial Intelligence,
+      Machine Learning, and Computer Vision. Completed an undergraduate thesis on
+      computer vision-based real-time air quality index estimation from
+      ground-level images.
 
-  # - title: "MSc in Artificial Intelligence and Weird Stuff"
-  #   institution: "University of Neverland"
-  #   institution_url: "https://www.youtube.com/watch?v=4SK1KN6ToNw"
-  #   location: "Never Never, Neverland"
-  #   period: "2021 - 2023"
-  #   description: >
-  #     Graduated with honors. Thesis on deep learning for automated theorem proving.
 
-  # - title: "BSc in Computer Science"
-  #   institution: "University of Atlantis"
-  #   institution_url: "https://it.wikipedia.org/wiki/Atlantis_-_L%27impero_perduto"
-  #   location: "Atlantis, Arctic"
-  #   period: "2018 - 2021"
-  #   description: >
-  #     Graduated with honors. Thesis on distributed systems for underwater basket weaving.
-  #   thesis: "assets/img/me.png"
+  - title: "Higher Secondary Certificate (HSC)"
+    institution: "Al-Hera Academy School & College"
+    location: "Bera, Pabna, Bangladesh"
+    period: "2020 – 2022"
+    description: >
+      GPA: 5.00/5.00.
+      Completed Higher Secondary education in Science.
 
-work:
+
+  - title: "Secondary School Certificate (SSC)"
+    institution: "Al-Hera Academy School & College"
+    location: "Bera, Pabna, Bangladesh"
+    period: "2018 – 2020"
+    description: >
+      GPA: 5.00/5.00.
+      Completed Secondary School education in Science.
+
+
+
+employment:
+
   - title: "AI Automation Engineer"
     institution: "Softvence Delta"
     institution_url: "https://www.betopia.com/"
@@ -35,12 +41,24 @@ work:
     period: "Apr 2026 – Present"
     description: >
       Developing AI-powered automation systems, LLM applications, and workflow
-      orchestration using FastAPI, LangChain, LangGraph, OpenAI APIs, and n8n.
+      orchestration solutions using FastAPI, LangChain, LangGraph, OpenAI APIs,
+      and n8n.
 
-  # - title: "Teaching Assistant"
-  #   institution: "University of Pisa"
-  #   institution_url: "https://di.unipi.it/"
-  #   location: "Pisa, Italy"
-  #   period: "2023 - present"
-  #   description: >
-  #     Helping brilliant students and clever graders survive machine learning assignments with dignity.
+      
+teaching:
+  - title: "Content Creator"
+    institution: "StudyWithMoniRuL (YouTube Channel)"
+    institution_url: "YOUR_CHANNEL_URL"
+    location: "Online"
+    period: "2024 – Present"
+    description: >
+      Manage an educational YouTube channel sharing study materials and tutorials
+      on programming, problem-solving, mathematics, and computer science.
+
+  - title: "Mathematics Tutor (Calculus)"
+    institution: "Private Tutoring"
+    location: "Online"
+    period: "2022 – 2024"
+    description: >
+      Helped junior students understand calculus concepts, improve problem-solving
+      skills, and achieve better academic performance.

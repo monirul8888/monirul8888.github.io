@@ -1,0 +1,98 @@
+{% assign work = site.data.experience.employment | default: [] %}
+
+{% if work.size > 0 %}
+
+<section id="employment" class="py-3 border-b border-slate-100">
+
+  <h2 class="text-xl font-bold text-slate-900 mb-3">
+    Employment History
+  </h2>
+
+
+  <div class="space-y-2 border-l-2 border-emerald-100 ml-3 pl-4">
+
+    {% for exp in work %}
+
+    <div class="relative">
+
+      <!-- Timeline -->
+      <span
+        class="absolute -left-[22px] top-4 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100">
+      </span>
+
+
+      <div
+        class="p-3 rounded-lg border border-slate-100 bg-white/60 hover:bg-white hover:shadow-sm transition">
+
+
+        <!-- Position -->
+        <h3 class="font-semibold text-slate-900 text-sm">
+          {{ exp.title }}
+        </h3>
+
+
+        <!-- Company -->
+        <div class="text-sm text-slate-600">
+
+          {% if exp.institution_url %}
+
+          <a
+            href="{{ exp.institution_url }}"
+            target="_blank"
+            rel="noopener"
+            class="text-sky-700 font-medium hover:underline">
+            {{ exp.institution }}
+          </a>
+
+          {% else %}
+
+          <span class="font-medium">
+            {{ exp.institution }}
+          </span>
+
+          {% endif %}
+
+        </div>
+
+
+        <!-- Meta -->
+        {% if exp.location or exp.period %}
+
+        <div class="text-[11px] text-slate-500 mt-0.5">
+
+          {% if exp.location %}
+          {{ exp.location }}
+          {% endif %}
+
+          {% if exp.period %}
+          · {{ exp.period }}
+          {% endif %}
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- Description -->
+        {% if exp.description %}
+
+        <p class="mt-1.5 text-xs text-slate-700 leading-relaxed">
+          {{ exp.description }}
+        </p>
+
+        {% endif %}
+
+
+      </div>
+
+    </div>
+
+
+    {% endfor %}
+
+  </div>
+
+</section>
+
+{% endif %}
