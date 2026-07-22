@@ -1,230 +1,168 @@
-let githubData = null;
+const DATA_URL = "./data/contributions.json";
 
 
-async function initGithubCalendar() {
-
-    try {
-
-        const response = await fetch("./data/contributions.json");
-
-        const json = await response.json();
+let contributions = [];
+let years = [];
+let selectedYear;
 
 
-        githubData =
-            json.data.user.contributionsCollection.contributionCalendar;
+
+fetch(DATA_URL)
+    .then(response => response.json())
+    .then(data => {
+
+
+        const weeks =
+            data.data.user
+                .contributionsCollection
+                .contributionCalendar
+                .weeks;
+
+
+
+        weeks.forEach(week => {
+
+            week.contributionDays.forEach(day => {
+
+                contributions.push(day);
+
+            });
+
+        });
+
+
+
+        years = [
+            ...new Set(
+                contributions.map(day =>
+                    new Date(day.date)
+                        .getFullYear()
+                )
+            )
+        ];
+
+
+
+        years.sort(
+            (a, b) => b - a
+        );
+
+
+
+        selectedYear = years[0];
 
 
         createYearButtons();
 
 
-        const currentYear = new Date().getFullYear();
-
-        loadGithubCalendar(currentYear);
-
-
-    } catch(error) {
-
-        console.log("Github data error:", error);
-
-    }
-
-}
+        renderCalendar(selectedYear);
 
 
 
+    })
+    .catch(error => {
 
-
-function createYearButtons(){
-
-    const box =
-    document.getElementById("github-years");
-
-
-    box.innerHTML="";
-
-
-    let years = [];
-
-
-    githubData.weeks.forEach(week=>{
-
-        week.contributionDays.forEach(day=>{
-
-
-            let year =
-            new Date(day.date).getFullYear();
-
-
-            if(!years.includes(year)){
-                years.push(year);
-            }
-
-
-        });
+        console.error(
+            "JSON Error:",
+            error
+        );
 
     });
 
 
 
-    years.sort((a,b)=>b-a);
 
 
 
-    years.forEach(year=>{
+function createYearButtons() {
 
 
-        let btn =
-        document.createElement("button");
+    const yearBox =
+        document.getElementById(
+            "github-years"
+        );
 
 
-        btn.innerText = year;
+    yearBox.innerHTML = "";
 
 
-        btn.className =
-        "px-4 py-2 rounded-lg bg-slate-100 hover:bg-green-600 hover:text-white";
 
+    years.forEach(year => {
 
-        btn.onclick=function(){
 
-            loadGithubCalendar(year);
+        const button =
+            document.createElement("button");
 
-        };
 
 
-        box.appendChild(btn);
+        button.innerText = year;
 
 
 
-    });
+        button.className =
+            `
+        px-4 py-1
+        rounded-full
+        border
+        text-sm
+        transition
+        `;
 
 
 
-}
+        if (year === selectedYear) {
 
-
-
-
-
-
-
-function loadGithubCalendar(year){
-
-
-    const calendar =
-    document.getElementById(
-        "github-calendar"
-    );
-
-
-    calendar.innerHTML="";
-
-
-
-    let total = 0;
-
-    let activeDays = 0;
-
-
-
-    githubData.weeks.forEach(week=>{
-
-
-        let column =
-        document.createElement("div");
-
-
-        column.className =
-        "flex flex-col gap-1";
-
-
-
-        let showColumn=false;
-
-
-
-        week.contributionDays.forEach(day=>{
-
-
-            let dayYear =
-            new Date(day.date)
-            .getFullYear();
-
-
-
-            if(dayYear === year){
-
-
-                showColumn=true;
-
-
-                total += day.contributionCount;
-
-
-                if(day.contributionCount>0){
-                    activeDays++;
-                }
-
-
-
-                let square =
-                document.createElement("div");
-
-
-                square.className =
-                "w-3 h-3 rounded-sm";
-
-
-
-                square.style.backgroundColor =
-                day.color;
-
-
-
-                square.title =
-                `${day.date}: ${day.contributionCount} contributions`;
-
-
-
-                column.appendChild(square);
-
-
-            }
-
-
-
-        });
-
-
-
-        if(showColumn){
-
-            calendar.appendChild(column);
+            button.classList.add(
+                "bg-indigo-600",
+                "text-white"
+            );
 
         }
 
 
 
+
+        button.onclick = () => {
+
+
+            selectedYear = year;
+
+
+
+            document
+                .querySelectorAll(
+                    "#github-years button"
+                )
+                .forEach(btn => {
+
+                    btn.classList.remove(
+                        "bg-indigo-600",
+                        "text-white"
+                    );
+
+                });
+
+
+
+            button.classList.add(
+                "bg-indigo-600",
+                "text-white"
+            );
+
+
+
+            renderCalendar(year);
+
+
+
+        };
+
+
+
+        yearBox.appendChild(button);
+
+
     });
-
-
-
-
-    document.getElementById(
-        "github-total"
-    ).innerText = total;
-
-
-
-    document.getElementById(
-        "github-year"
-    ).innerText = year;
-
-
-
-    document.getElementById(
-        "active-days"
-    ).innerText = activeDays;
-
 
 
 }
@@ -234,4 +172,143 @@ function loadGithubCalendar(year){
 
 
 
-initGithubCalendar();
+
+
+
+function renderCalendar(year) {
+
+
+    const calendar =
+        document.getElementById(
+            "github-calendar"
+        );
+
+
+
+    calendar.innerHTML = "";
+
+
+
+    const now = new Date();
+
+
+
+    const filtered =
+        contributions.filter(day => {
+
+
+            const date =
+                new Date(day.date);
+
+
+
+            /*
+              Hide future dates
+            */
+
+            if (date > now) {
+
+                return false;
+
+            }
+
+
+
+            return (
+                date.getFullYear()
+                === year
+            );
+
+
+        });
+
+
+
+
+
+    let total = 0;
+
+    let active = 0;
+
+
+
+
+    filtered.forEach(day => {
+
+
+        total +=
+            Number(day.contributionCount);
+
+
+
+        if (day.contributionCount > 0) {
+
+            active++;
+
+        }
+
+
+
+        const box =
+            document.createElement("div");
+
+
+
+        box.className =
+            `
+w-[11px]
+h-[11px]
+rounded-sm
+${day.color}
+`;
+
+
+
+        box.style.backgroundColor =
+            day.color;
+
+
+
+        box.title =
+            `${day.date}
+${day.contributionCount} contributions`;
+
+
+
+        calendar.appendChild(box);
+
+
+
+    });
+
+
+
+
+
+    document
+        .getElementById(
+            "github-total"
+        )
+        .innerText = total;
+
+
+
+
+    document
+        .getElementById(
+            "github-year"
+        )
+        .innerText = year;
+
+
+
+
+    document
+        .getElementById(
+            "active-days"
+        )
+        .innerText = active;
+
+
+
+}
