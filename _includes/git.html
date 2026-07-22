@@ -1,12 +1,18 @@
 <!-- ===================== GITHUB CONTRIBUTION GRAPH ===================== -->
 <section id="github">
+
   <div class="flex items-center justify-between mb-5">
+
     <div>
-      <h2 class="text-2xl font-bold">GitHub Contributions</h2>
+      <h2 class="text-2xl font-bold">
+        GitHub Contributions
+      </h2>
+
       <p class="text-sm text-slate-500 mt-1">
         A visual snapshot of my coding activity — each green square represents a day of learning, building, and pushing code. Consistency over perfection 💻
       </p>
     </div>
+
 
     <a
       href="https://github.com/moonirul"
@@ -14,67 +20,109 @@
       rel="noopener noreferrer"
       class="text-sm font-medium text-indigo-600 hover:text-indigo-800"
     >
-      View GitHub <i class="bi bi-arrow-up-right"></i>
+      View GitHub
+      <i class="bi bi-arrow-up-right"></i>
     </a>
+
   </div>
 
 
-  <!-- Year Filter -->
-  <div class="flex flex-wrap gap-2 mb-4">
-    <button onclick="changeYear(2026,this)"
-      class="year-btn px-4 py-2 rounded-lg bg-green-600 text-white text-sm">
-      2026
-    </button>
 
-    <button onclick="changeYear(2025,this)"
-      class="year-btn px-4 py-2 rounded-lg bg-slate-100 text-sm">
-      2025
-    </button>
-
-    <button onclick="changeYear(2024,this)"
-      class="year-btn px-4 py-2 rounded-lg bg-slate-100 text-sm">
-      2024
-    </button>
-  </div>
+  <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm overflow-hidden">
 
 
-  <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+    <!-- Year Filter -->
 
-    <div class="mb-4 text-sm text-slate-500">
-      Viewing:
-      <span id="activeYear" class="font-bold text-green-600">
+    <div class="flex flex-wrap gap-2 mb-6">
+
+
+      <button
+        onclick="loadGithubCalendar(2026)"
+        class="year-btn px-4 py-2 rounded-lg bg-green-600 text-white text-sm">
         2026
-      </span>
+      </button>
+
+
+      <button
+        onclick="loadGithubCalendar(2025)"
+        class="year-btn px-4 py-2 rounded-lg bg-slate-100 text-sm">
+        2025
+      </button>
+
+
+      <button
+        onclick="loadGithubCalendar(2024)"
+        class="year-btn px-4 py-2 rounded-lg bg-slate-100 text-sm">
+        2024
+      </button>
+
+
     </div>
 
 
-    <img
-      id="githubGraph"
-      src="https://ghchart.rshah.org/26a641/moonirul"
-      alt="Moonirul GitHub Contribution Calendar"
-      class="w-full rounded-xl"
-      loading="lazy"
-    />
+
+    <!-- Month -->
+
+    <div class="grid grid-cols-12 text-xs text-slate-400 mb-3">
+
+      <span>Jan</span>
+      <span>Feb</span>
+      <span>Mar</span>
+      <span>Apr</span>
+      <span>May</span>
+      <span>Jun</span>
+      <span>Jul</span>
+      <span>Aug</span>
+      <span>Sep</span>
+      <span>Oct</span>
+      <span>Nov</span>
+      <span>Dec</span>
+
+    </div>
 
 
-    <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <!-- Calendar -->
+
+    <div
+      id="github-calendar"
+      class="flex flex-wrap gap-1">
+    </div>
+
+
+
+    <!-- Stats -->
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+
 
       <div class="bg-green-50 rounded-xl p-4">
+
         <p class="text-sm text-slate-500">
-          Total in <span id="totalYear">2026</span>
+          Total in
+          <span id="github-year">
+            2026
+          </span>
         </p>
 
         <h3 class="text-2xl font-bold text-green-700">
-          1,253
+
+          <span id="github-total">
+            0
+          </span>
+
         </h3>
 
         <p class="text-sm">
-          commits
+          contributions
         </p>
+
       </div>
 
 
+
       <div class="bg-blue-50 rounded-xl p-4">
+
         <p class="text-sm text-slate-500">
           Status
         </p>
@@ -82,60 +130,54 @@
         <h3 class="text-2xl font-bold text-blue-700">
           Active
         </h3>
+
       </div>
 
 
+
       <div class="bg-purple-50 rounded-xl p-4">
+
         <p class="text-sm text-slate-500">
           Viewing
         </p>
 
-        <h3 id="viewYear" class="text-2xl font-bold text-purple-700">
+        <h3
+          id="view-year"
+          class="text-2xl font-bold text-purple-700">
           2026
         </h3>
+
       </div>
+
 
     </div>
 
+
+
+    <!-- Legend -->
+
+    <div class="flex justify-end items-center gap-2 mt-5 text-xs text-slate-500">
+
+      <span>
+        Less
+      </span>
+
+      <span class="w-3 h-3 rounded-sm bg-[#ebedf0]"></span>
+      <span class="w-3 h-3 rounded-sm bg-[#9be9a8]"></span>
+      <span class="w-3 h-3 rounded-sm bg-[#40c463]"></span>
+      <span class="w-3 h-3 rounded-sm bg-[#216e39]"></span>
+
+      <span>
+        More
+      </span>
+
+    </div>
+
+
   </div>
+
+
 </section>
 
 
-<script>
-function changeYear(year, btn){
-
-  // update graph
-  document.getElementById("githubGraph").src =
-    `https://ghchart.rshah.org/26a641/moonirul?year=${year}`;
-
-
-  // update text
-  document.getElementById("activeYear").innerText = year;
-  document.getElementById("viewYear").innerText = year;
-  document.getElementById("totalYear").innerText = year;
-
-
-  // button active style
-  document.querySelectorAll(".year-btn").forEach(button=>{
-    button.classList.remove(
-      "bg-green-600",
-      "text-white"
-    );
-
-    button.classList.add(
-      "bg-slate-100"
-    );
-  });
-
-
-  btn.classList.add(
-    "bg-green-600",
-    "text-white"
-  );
-
-  btn.classList.remove(
-    "bg-slate-100"
-  );
-
-}
-</script>
+<script src="./github-calendar.js"></script>
