@@ -8,7 +8,7 @@ layout: default
 {% include employment.html %}
 {% include skills.html %}
 {% include projects.html %}
-{% include git.html %} 
+
 {% include publications.html %}
 {% include teaching.html %}
 {% include resume.html %}

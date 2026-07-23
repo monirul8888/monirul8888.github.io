@@ -1,75 +1,61 @@
 {% assign education = site.data.experience.education | default: [] %} {% if
 education.size > 0 %}
 
-<section id="education" class="py-3 border-b border-slate-100">
+<section id="education" class="py-1">
   <h2 class="text-xl font-bold text-slate-900 mb-3">Education</h2>
 
-  <div class="space-y-2 border-l-2 border-indigo-100 ml-3 pl-4">
+  <div class="border-l-2 border-indigo-200 pl-4 space-y-4">
     {% for exp in education %}
 
     <div class="relative">
-      <!-- Timeline -->
+      <!-- Timeline Dot -->
       <span
-        class="absolute -left-[22px] top-4 w-2.5 h-2.5 rounded-full bg-indigo-500 ring-4 ring-indigo-100"
-      >
-      </span>
+        class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-indigo-600"
+      ></span>
 
-      <div
-        class="p-3 rounded-lg border border-slate-100 bg-white/60 hover:bg-white hover:shadow-sm transition"
-      >
-        <!-- Title -->
-        <h3 class="font-semibold text-slate-900 text-sm">{{ exp.title }}</h3>
+      <h3 class="text-base font-semibold leading-tight text-slate-900">
+        {{ exp.title }}
+      </h3>
 
-        <!-- Institution -->
-        <div class="text-sm text-slate-600">
-          {% if exp.institution_url %}
-
-          <a
-            href="{{ exp.institution_url }}"
-            target="_blank"
-            rel="noopener"
-            class="text-sky-700 font-medium hover:underline"
-          >
-            {{ exp.institution }}
-          </a>
-
-          {% else %}
-
-          <span class="font-medium"> {{ exp.institution }} </span>
-
-          {% endif %}
-        </div>
-
-        <!-- Meta -->
-        <div class="text-[11px] text-slate-500 mt-0.5">
-          {% if exp.location %} {{ exp.location }} {% endif %} {% if exp.period
-          %} · {{ exp.period }} {% endif %}
-        </div>
-
-        <!-- Description -->
-        {% if exp.description %}
-
-        <p class="mt-1.5 text-xs text-slate-700 leading-relaxed">
-          {{ exp.description }}
-        </p>
-
-        {% endif %}
-
-        <!-- Thesis -->
-        {% if exp.thesis %}
+      <div class="text-sm leading-tight">
+        {% if exp.institution_url %}
 
         <a
-          href="{{ exp.thesis }}"
+          href="{{ exp.institution_url }}"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1 mt-2 px-2.5 py-1 rounded-full bg-sky-600 text-white text-[11px] hover:bg-sky-700"
+          class="font-medium text-sky-700 hover:underline"
         >
-          <i class="bi bi-journal-text"></i>
-          Thesis
+          {{ exp.institution }}
         </a>
+
+        {% else %}
+
+        <span class="font-medium">{{ exp.institution }}</span>
 
         {% endif %}
       </div>
+
+      <div class="text-xs text-slate-500 leading-tight">
+        {% if exp.location %}{{ exp.location }}{% endif %} {% if exp.period %} •
+        {{ exp.period }}{% endif %}
+      </div>
+
+      {% if exp.description %}
+      <p class="mt-1 text-sm leading-snug text-slate-700">
+        {{ exp.description }}
+      </p>
+      {% endif %} {% if exp.thesis %}
+      <a
+        href="{{ exp.thesis }}"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-1 mt-1 text-xs font-medium text-sky-700 hover:underline"
+      >
+        <i class="bi bi-journal-text"></i>
+        Thesis
+      </a>
+      {% endif %}
     </div>
 
     {% endfor %}

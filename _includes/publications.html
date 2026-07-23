@@ -1,221 +1,93 @@
-{% assign items = site.data.publications | default: [] %}
-
-{% if site.publications.show_selected_only %}
-{% assign items = items | where: "selected", true %}
-{% endif %}
-
-
-{% if items.size > 0 %}
-
-<section id="publications" class="py-10 border-b border-slate-100">
-
-
-    <h2 class="text-2xl font-bold text-slate-900 mb-8">
-        Publications
-    </h2>
-
-
-
-    <div class="space-y-6">
-
-
-        {% for p in items %}
-
-
-        <article
-        class="group p-6 rounded-2xl  border border-slate-100 hover:bg-white hover:shadow-md transition duration-300">
-
-
-            <div class="flex gap-4">
-
-
-                <div class="mt-1 shrink-0">
-
-                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-
-                        <i class="bi bi-file-earmark-text-fill text-indigo-600"></i>
-
-                    </div>
-
-                </div>
-
-
-
-
-                <div class="flex-1">
-
-
-                    <h3 class="text-lg font-semibold text-slate-900 leading-snug">
-
-                        {{ p.title }}
-
-                    </h3>
-
-
-
-                    {% if p.authors %}
-
-                    <p class="mt-2 text-sm text-slate-600">
-
-                        {{ p.authors }}
-
-                    </p>
-
-                    {% endif %}
-
-
-
-
-
-                    <p class="mt-1 text-sm text-slate-500 italic">
-
-                        {{ p.venue }}
-
-                        {% if p.year %}
-                        · {{ p.year }}
-                        {% endif %}
-
-                    </p>
-
-
-
-
-
-
-                    <div class="flex flex-wrap gap-2 mt-5">
-
-
-                        {% if p.pdf %}
-
-                        <a
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-600 text-white text-sm font-medium hover:bg-sky-700 transition"
-                        href="{{ p.pdf }}"
-                        target="_blank"
-                        rel="noopener">
-
-                            <i class="bi bi-file-earmark-pdf-fill"></i>
-                            PDF
-
-                        </a>
-
-                        {% endif %}
-
-
-
-
-
-                        {% if p.doi %}
-
-                        <a
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 transition"
-                        href="https://doi.org/{{ p.doi }}"
-                        target="_blank"
-                        rel="noopener">
-
-                            <i class="ai ai-doi"></i>
-                            DOI
-
-                        </a>
-
-                        {% endif %}
-
-
-
-
-
-                        {% if p.code %}
-
-                        <a
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full  text-white text-sm font-medium hover:bg-black transition"
-                        href="{{ p.code }}"
-                        target="_blank"
-                        rel="noopener">
-
-                            <i class="bi bi-github"></i>
-                            Code
-
-                        </a>
-
-                        {% endif %}
-
-
-
-
-
-                        {% if p.poster %}
-
-                        <a
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition"
-                        href="{{ p.poster }}"
-                        target="_blank"
-                        rel="noopener">
-
-                            <i class="bi bi-image"></i>
-                            Poster
-
-                        </a>
-
-                        {% endif %}
-
-
-
-
-
-                        {% if p.slides %}
-
-                        <a
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-600 text-white text-sm font-medium hover:bg-orange-700 transition"
-                        href="{{ p.slides }}"
-                        target="_blank"
-                        rel="noopener">
-
-                            <i class="bi bi-easel-fill"></i>
-                            Slides
-
-                        </a>
-
-                        {% endif %}
-
-
-
-
-
-                        {% if p.video %}
-
-                        <a
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-600 text-white text-sm font-medium hover:bg-rose-700 transition"
-                        href="{{ p.video }}"
-                        target="_blank"
-                        rel="noopener">
-
-                            <i class="bi bi-play-circle-fill"></i>
-                            Video
-
-                        </a>
-
-                        {% endif %}
-
-
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-        </article>
-
-
-        {% endfor %}
-
-
-    </div>
-
-
+{% assign items = site.data.publications | default: [] %} {% if
+site.publications.show_selected_only %} {% assign items = items | where:
+"selected", true %} {% endif %} {% if items.size > 0 %}
+
+<section id="publications" class="py-1">
+  <h2 class="text-xl font-bold text-slate-900 mb-3">Publications</h2>
+
+  <div class="space-y-5">
+    {% for p in items %}
+
+    <article class="flex gap-3">
+      <div class="pt-1 shrink-0">
+        <i class="bi bi-file-earmark-text-fill text-indigo-600"></i>
+      </div>
+
+      <div class="flex-1">
+        <h3 class="text-base font-semibold leading-tight text-slate-900">
+          {{ p.title }}
+        </h3>
+
+        {% if p.authors %}
+        <p class="text-sm text-slate-600 leading-tight">{{ p.authors }}</p>
+        {% endif %}
+
+        <p class="text-xs italic text-slate-500">
+          {{ p.venue }} {% if p.year %} • {{ p.year }}{% endif %}
+        </p>
+
+        <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-sm">
+          {% if p.pdf %}
+          <a
+            href="{{ p.pdf }}"
+            target="_blank"
+            rel="noopener"
+            class="text-sky-700 hover:underline"
+          >
+            <i class="bi bi-file-earmark-pdf-fill"></i> PDF
+          </a>
+          {% endif %} {% if p.doi %}
+          <a
+            href="https://doi.org/{{ p.doi }}"
+            target="_blank"
+            rel="noopener"
+            class="text-emerald-700 hover:underline"
+          >
+            <i class="ai ai-doi"></i> DOI
+          </a>
+          {% endif %} {% if p.code %}
+          <a
+            href="{{ p.code }}"
+            target="_blank"
+            rel="noopener"
+            class="text-slate-700 hover:underline"
+          >
+            <i class="bi bi-github"></i> Code
+          </a>
+          {% endif %} {% if p.poster %}
+          <a
+            href="{{ p.poster }}"
+            target="_blank"
+            rel="noopener"
+            class="text-purple-700 hover:underline"
+          >
+            <i class="bi bi-image"></i> Poster
+          </a>
+          {% endif %} {% if p.slides %}
+          <a
+            href="{{ p.slides }}"
+            target="_blank"
+            rel="noopener"
+            class="text-orange-700 hover:underline"
+          >
+            <i class="bi bi-easel-fill"></i> Slides
+          </a>
+          {% endif %} {% if p.video %}
+          <a
+            href="{{ p.video }}"
+            target="_blank"
+            rel="noopener"
+            class="text-rose-700 hover:underline"
+          >
+            <i class="bi bi-play-circle-fill"></i> Video
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+
+    {% endfor %}
+  </div>
 </section>
-
 
 {% endif %}
