@@ -68,9 +68,9 @@
       /* PREMIUM BACKGROUND */
 
       body {
-  background: #ffffff;
-}
-     
+        background: #f7f5ef;
+        padding: 0;
+      }
 
       .page-wrapper {
         min-height: 100vh;
@@ -188,32 +188,23 @@
       }
 
       /* MAIN */
-      #main-content {
-        padding: 45px 50px 80px;
-        
-      }
+
       .content-inner {
         width: 100%;
-        max-width: none;
-        overflow-x: hidden;
+        min-height: 100vh;
+        padding: 0px;
+        background: #ffffff;
       }
 
       /* SECTION CARD */
       #main-content section {
         width: 100%;
-        padding: 0;
         margin: 0 0 40px;
+        padding: 0;
         background: transparent;
         border: none;
-        border-radius: 0;
         box-shadow: none;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        transition: none;
-
       }
-
-      
 
       #main-content section:hover {
         background: transparent;
@@ -260,22 +251,20 @@
           left: 0;
           top: 0;
           bottom: 0;
-          width: 450px;
+          width: 320px;
           display: flex;
           flex-direction: column;
         }
         #main-content {
-          margin-left: 450px;
-          width: calc(100vw - 450px);
-          max-width: calc(100vw - 450px);
+          margin-left: 320px;
+          width: calc(100vw - 320px);
           height: calc(100vh - 42px);
           overflow-y: auto;
           overflow-x: hidden;
-          padding: 45px 100px 80px;
-          
+          background: #ffffff;
+          padding: 0;
         }
       }
-      
 
       @media (max-width: 1023px) {
         .fixed-footer {
@@ -289,7 +278,25 @@
         }
       }
 
+      #main-content section#about {
+        background: #ececec !important;
+        width: 100%;
+        padding: 20px 80px;
+        margin: 0;
+        min-height: auto;
+      }
 
+      #main-content section#education,
+      #main-content section#employment,
+      #main-content section#skills,
+      #main-content section#projects,
+      #main-content section#publications,
+      #main-content section#teaching,
+      #main-content section#resume,
+      #main-content section#contact {
+        background: #ffffff !important;
+        padding: 30px 80px;
+      }
     </style>
   </head>
 
