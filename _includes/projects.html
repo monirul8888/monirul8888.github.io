@@ -1,19 +1,15 @@
-<style>
-  .project-card.expanded {
-    grid-column: 1 / -1;
-  }
-</style>
+
 
 {% assign items = site.data.projects | default: [] %} {% if
 site.projects.show_featured_only %} {% assign items = items | where: "featured",
 true %} {% endif %} {% if items.size > 0 %}
 
-<section id="projects" class="py-12 border-b border-slate-100">
-  <h2 class="text-3xl font-bold text-slate-900 mb-2">Selected Projects</h2>
+<section id="projects" class="py-1">
+  
+  <h2 class="text-xl font-bold text-slate-900 mb-3">Projects</h2>
 
-  <p class="text-slate-500 mb-10">
-    A collection of things I've built and shipped.
-  </p>
+
+ 
 
   <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {% for p in items %}

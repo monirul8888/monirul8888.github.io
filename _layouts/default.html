@@ -352,6 +352,10 @@
         </div>
 
         <nav class="sidebar-scroll">
+          <a href="#home" id="home-btn" class="nav-link">
+            <i class="bi bi-house-fill"></i>
+            Home
+          </a>
           <a href="#about" class="nav-link"
             ><i class="bi bi-person"></i> About Me</a
           >
@@ -400,6 +404,8 @@
 
       <!-- ===================== MAIN CONTENT ===================== -->
       <main id="main-content">
+        <div id="home"></div>
+
         <div class="content-inner">{{ content }}</div>
 
         <div class="fixed-footer">
@@ -487,6 +493,18 @@
             }
 
             e.preventDefault();
+            if (id === "home") {
+              showAllSections();
+
+              if (mainContent) {
+                mainContent.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
+              }
+
+              return;
+            }
 
             if (isDesktop()) {
               hideAllExcept(id);
